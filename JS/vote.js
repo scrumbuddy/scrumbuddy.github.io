@@ -19,11 +19,6 @@ $(document).ready(function() {
      window.location.href = "../index.html";
    }
    
-   $(document).on("click", ".btnleave", function(data) {
-      continueSession = true;
-      roomUserRef.remove();
-   });
-   
    $(document).on("click", "#btnlogo", function(data) {
       roomUserRef.remove();
    });
