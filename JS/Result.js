@@ -31,13 +31,13 @@ function endSession(){
     roomRef.remove();
 };
 
-function displayVoteTable(averageNum, mode, minPointNum, maxPointNum, minVoters, maxVoters) {
-    var averagePoint = $("#average-point-row");
+function displayVoteTable(mode, minPointNum, maxPointNum, minVoters, maxVoters, counter) {
     var modePoint = $("#mode-point-row");
     var minPointRow = $("#least-point-row");
     var maxPointRow = $("#most-point-row");
     var minNameRow = $("#least-point-people-row");
     var maxNameRow = $("#most-point-people-row");
+    var totalCountRow = $("#total-votes-row");
     var modeString = "";
 
     for (i = 0; i < mode.length; i++) {
@@ -47,12 +47,12 @@ function displayVoteTable(averageNum, mode, minPointNum, maxPointNum, minVoters,
         modeString += mode[i];
     }
         
-    averagePoint.text(averageNum);
     modePoint.text(modeString);
     minPointRow.text(minPointNum);
     maxPointRow.text(maxPointNum);
     minNameRow.text(minVoters);
     maxNameRow.text(maxVoters);
+    totalCountRow.text(counter);
 };
 
 function getPointFromIndex(index) {
@@ -85,12 +85,11 @@ function showUserVotes(usersRef) {
         var pointNum = 0;
         var minVoter = "";
         var maxVoter = "";
-        var averagePoint = 0;
         var countArray = [0, 0, 0, 0, 0, 0, 0, 0];
         var modeArray = [];
         var mode = 0;
 
-        $("#average-point-row").html("");
+        $("#total-votes-row").html("");
         $("#mode-point-row").html("");
         $("#least-point-row").html("");
         $("#most-point-row").html("");
@@ -105,10 +104,13 @@ function showUserVotes(usersRef) {
 
                 counter++;
                 pointNum = Number.parseFloat(data.val().point);
-                averagePoint += pointNum
-                console.log('Average:' + averagePoint + 'for ' + data.val().point);
+
                 if (pointNum > minPoint) {
                     if (pointNum > maxPoint) {
+                        if (minPoint == 0){
+                            minPoint = maxPoint;
+                            minVoter = maxVoter;  
+                        }
                         maxPoint = data.val().point;
                         maxVoter = userName;
                     } else if (pointNum == maxPoint) {
@@ -167,13 +169,7 @@ function showUserVotes(usersRef) {
             }
         }
 
-        if (counter > 0) {
-            averagePoint /= counter;
-            averagePoint = Number.parseFloat(averagePoint);
-            averagePoint = averagePoint.toFixed(2);
-        }
-        
-        displayVoteTable(averagePoint, modeArray, minPoint, maxPoint, minVoter, maxVoter);
+        displayVoteTable(modeArray, minPoint, maxPoint, minVoter, maxVoter,counter);
 
         // update page with user votes
         var canvas = document.getElementById("myChart");
