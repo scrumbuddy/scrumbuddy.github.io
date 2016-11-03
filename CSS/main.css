@@ -1,0 +1,56 @@
+/* nav bar styles */
+.navbar-default  {
+	background-color: #608DA4;
+	border-color: #608DA4;
+}
+
+.navbar-brand {
+    color: #000000;
+    font-family: 'Pacifico', cursive;
+    font-size: 48px;
+    margin-left: 10px;
+}
+
+#navbar-brand-link {
+    color: #000000;
+    font-family: 'Pacifico', cursive;
+    font-size: 48px;
+    margin-left: 10px;
+}
+
+#btnScrumBuddy {
+    color: #000000;
+    font-family: 'Pacifico', cursive;
+    font-size: 48px;
+    margin-left: 10px;
+}
+
+body {
+    background-image: url(../IMG/triangular.png);
+    margin-top:10px;
+}
+
+
+.room-button {
+	width: 70px;
+	margin-left: 20px;
+}
+
+#home-buttons {
+    width: 75%;
+    margin: 0 auto;
+}
+
+#graph-div {
+    width: 40%;
+    margin: 0 auto;
+}
+
+#user-list {
+    position: relative;
+    left: 18px;
+}
+
+.jumbotron {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='shortcut icon' type='image/x-icon' href='IMG/favicon.ico' />
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <title>ScrumBuddy</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/main.css"/>
+    <link rel="apple-touch-icon" href="IMG/ScrumBuddyLogoWithoutWords.png">
+    <script src="https://www.gstatic.com/firebasejs/3.5.3/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDj7BjyJtwr9yVb3nedC05oMLvgNQiKEy0",
+        authDomain: "scrumbuddy-8270f.firebaseapp.com",
+        databaseURL: "https://scrumbuddy-8270f.firebaseio.com",
+        storageBucket: "scrumbuddy-8270f.appspot.com",
+        messagingSenderId: "978048350322"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="JS/index.js"></script>
+  </head>
+  <body>
+  	<!-- Nav bar -->
+  	<nav id="nav-bar" class="navbar navbar-default">
+  	  <div class="container-fluid">
+  	    <!-- Brand and toggle get grouped for better mobile display -->
+  	    <div class="navbar-header">
+  	      <a href="index.html">
+  	        <img src="././IMG/ScrumBuddyLogoWithoutWords.png" alt="img" style="float:left;width:50px;height50px;"></a>
+  	    </div>
+  	  </div><!-- /.container-fluid -->
+  	</nav>
+    <!-- Main content container -->
+    <div id="main-content-container" class="container">
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron" id="indexjumbo">
+        <div class="row">
+	        <h1 id="SBTitle" align="center" style="font-family: 'Pacifico'; margin-bottom:50px">ScrumBuddy</h1>
+          <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+              <input type="text" class="form-control" id="usr" placeholder="Enter your name">
+            </div>
+          </div>
+        </div>
+          <div class="btn-group btn-group-justified" id="home-buttons">
+            <a id="joinroom" class="joinroom btn btn-info" role="button">Join Room</a>
+            <a id="hostroom" class="hostroom btn btn-info" role="button">Host Room</a>
+          </div>
+      </div>
+    </div> <!-- /container -->
+  </body>
+</html>

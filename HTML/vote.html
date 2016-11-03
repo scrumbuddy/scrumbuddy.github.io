@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='shortcut icon' type='image/x-icon' href='../IMG/favicon.ico' />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+        <title>ScrumBuddy</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.3/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDj7BjyJtwr9yVb3nedC05oMLvgNQiKEy0",
+                authDomain: "scrumbuddy-8270f.firebaseapp.com",
+                databaseURL: "https://scrumbuddy-8270f.firebaseio.com",
+                storageBucket: "scrumbuddy-8270f.appspot.com",
+                messagingSenderId: "978048350322"
+            };
+            
+            firebase.initializeApp(config);
+        </script>
+        <script src="../JS/vote.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="../CSS/main.css"/>
+        <link rel="stylesheet" href="../CSS/vote.css"/>
+    </head>
+    <body class="ui-mobile">
+        <!-- Nav bar -->
+        <nav id="nav-bar" class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a id="btnlogo" href="../index.html">
+                        <img src="../IMG/ScrumBuddyLogoWithoutWords.png" alt="img" style="float:left;width:50px;height50px;">
+                    </a>
+                    <a id="btnScrumBuddy" href="../index.html" id="navbar-brand-link" class="navbar-brand" href="#">ScrumBuddy</a>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <!-- Main content container -->
+        <div id="main-content-container" class="container">
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <h1>Cast your vote</h1>
+            </div>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a id="btn1" class="ui-btn ui-btn-a ui-corner-all ui-shadow">
+                        <span>.5</span>
+                    </a>
+                    <a id="btn2" class="ui-btn ui-btn-a ui-corner-all ui-shadow">
+                        <span>2</span>
+                    </a>
+                    <a id="btn3" class="ui-btn ui-btn-a ui-corner-all ui-shadow">
+                        <span>5</span>
+                    </a>
+                    <a id="btn4" class="ui-btn ui-btn-a ui-corner-all ui-shadow">
+                        <span>13</span>
+                    </a>
+                </div> <!-- ui-block-a -->
+                <div class="ui-block-b">
+                    <a id="btn5" class="ui-btn ui-btn-a ui-corner-all ui-shadow">
+                        <span>1</span>
+                    </a>
+                    <a id="btn6" class="ui-btn ui-btn-a ui-corner-all ui-shadow">
+                        <span>3</span>
+                    </a>
+                    <a id="btn7" class="ui-btn ui-btn-a ui-corner-all ui-shadow">
+                        <span>8</span>
+                    </a>
+                    <a id="btn8" class="ui-btn ui-btn-a ui-corner-all ui-shadow">
+                        <span>20</span>
+                    </a>
+                </div> <!-- ui-block-b -->
+            </div> <!-- ui-grid-a -->
+            <a id="btnleave" class="ui-btn ui-btn-a ui-corner-all ui-shadow" href="rooms.html">
+                <span>Leave room</span>
+            </a>
+        </div> <!-- /container -->
+    </body>
+</html>
