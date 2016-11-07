@@ -103,7 +103,7 @@ function showUserVotes(usersRef) {
             if (data.key != "name") {
 
                 counter++;
-                pointNum = Number.parseFloat(data.val().point);
+                pointNum = parseFloat(data.val().point);
 
                 if (pointNum > minPoint) {
                     if (pointNum > maxPoint) {
