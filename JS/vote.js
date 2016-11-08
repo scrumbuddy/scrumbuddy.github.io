@@ -52,7 +52,7 @@ $(document).ready(function() {
          {
             // Not pressed again
             // Raise other button if another had been pressed
-            if (pressed != "")
+            if (pressed != "" && localStorage.getItem("currentPressedButton") != "")
             {
                $(pressed).animate({
                   top:"-=5"
@@ -75,11 +75,13 @@ $(document).ready(function() {
             pointRef.set(points);
             $("h1").html("Your vote is ".concat(points));
          }
+         localStorage.setItem("currentPressedButton", pressed);
+
       });
       
       i++;
    }
-   
+
    window.onbeforeunload = function(e) 
    {
       roomUserRef.remove();
@@ -98,17 +100,24 @@ $(document).ready(function() {
          window.location.href = "../index.html";
       }
    });
+  
    firebase.database().ref("rooms/" + userRoom + "/users/" + userID + "/point").on("value", function(snapshot) {
-      if (snapshot.val() == 0)
+      if (parseFloat(snapshot.val()) == -1)
       {
          // Remove previous vote info
          $("h1").html("Your vote is ");
-                     
-         $(thisID).animate({
-               top:"-=5"
-            }), 1, function(){};
-            
-         $(thisID).css("color", "#000000");
+         
+         var  pressedButton = localStorage.getItem("currentPressedButton");
+
+         if (pressedButton != ""){           
+            $( pressedButton).animate({
+                  top:"-=5"
+               }), 1, function(){};
+               
+            $(pressedButton).css("color", "#000000");
+            localStorage.setItem("currentPressedButton", "");
+          }
       }
    }); 
+    
 });

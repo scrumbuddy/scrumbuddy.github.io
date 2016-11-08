@@ -108,7 +108,7 @@ function showUserVotes(usersRef) {
             if (data.key != "name") {
 
                 counter++;
-                pointNum = Number.parseFloat(data.val().point);
+                pointNum = parseFloat(data.val().point);
 				
 				if (pointNum > 0){
 					if (pointNum > minPoint) {
@@ -247,7 +247,7 @@ function resetPoint(){
         snapshot.forEach(function(data) {
             if ( data.key != 'name') {
               updates['rooms/' + roomID +'/users/'+ data.key] = {name: data.val().name,
-																 point: 0};
+																 point: -1};
               firebase.database().ref().update(updates);
             }
         })
