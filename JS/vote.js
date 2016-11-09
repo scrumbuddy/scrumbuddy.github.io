@@ -98,4 +98,21 @@ $(document).ready(function() {
          window.location.href = "../index.html";
       }
    });
+   
+   firebase.database().ref("rooms/" + userRoom + "/users/" + userID + "/point").on("value", function(snapshot) {
+      if (parseFloat(snapshot.val()) == -1)
+      {
+         // Remove previous vote info
+         $("h1").html("Your vote is ");
+         
+         if (pressed != ""){           
+            $( pressed).animate({
+                  top:"-=5"
+               }), 1, function(){};
+               
+            $(pressed).css("color", "#000000");
+            pressed = "";
+          }
+      }
+   }); 
 });

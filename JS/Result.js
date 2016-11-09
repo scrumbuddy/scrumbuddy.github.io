@@ -31,13 +31,14 @@ function endSession(){
     roomRef.remove();
 };
 
-function displayVoteTable(mode, minPointNum, maxPointNum, minVoters, maxVoters, counter) {
+function displayVoteTable(mode, minPointNum, maxPointNum, minVoters, maxVoters, counter, missVoter) {
     var modePoint = $("#mode-point-row");
     var minPointRow = $("#least-point-row");
     var maxPointRow = $("#most-point-row");
     var minNameRow = $("#least-point-people-row");
     var maxNameRow = $("#most-point-people-row");
     var totalCountRow = $("#total-votes-row");
+	var missNameRow = $("#miss-point-people-row");
     var modeString = "";
 
     for (i = 0; i < mode.length; i++) {
@@ -53,6 +54,7 @@ function displayVoteTable(mode, minPointNum, maxPointNum, minVoters, maxVoters, 
     minNameRow.text(minVoters);
     maxNameRow.text(maxVoters);
     totalCountRow.text(counter);
+	missNameRow.text(missVoter);
 };
 
 function getPointFromIndex(index) {
@@ -85,6 +87,8 @@ function showUserVotes(usersRef) {
         var pointNum = 0;
         var minVoter = "";
         var maxVoter = "";
+		var missVoter = "Missed vote: ";
+		var missCount = 0;
         var countArray = [0, 0, 0, 0, 0, 0, 0, 0];
         var modeArray = [];
         var mode = 0;
@@ -95,35 +99,44 @@ function showUserVotes(usersRef) {
         $("#most-point-row").html("");
         $("#least-point-people-row").html("");
         $("#most-point-people-row").html("");
+		$("#miss-point-people-row").html("");
 
         snapshot.forEach(function(data) {
             var userName = data.val().name;
 
             // Get point info from users.
             if (data.key != "name") {
-
                 counter++;
                 pointNum = parseFloat(data.val().point);
 
-                if (pointNum > minPoint) {
-                    if (pointNum > maxPoint) {
-                        if (minPoint == 0){
-                            minPoint = maxPoint;
-                            minVoter = maxVoter;  
-                        }
-                        maxPoint = data.val().point;
-                        maxVoter = userName;
-                    } else if (pointNum == maxPoint) {
-                        maxVoter += ", " + userName;
-                    } else if (minPoint == 0) {
-                        minPoint = pointNum;
-                        minVoter = userName;
-                    }
-                } else if (pointNum == minPoint) {
-                    minVoter += ", " + userName;
-                } else {
-                    minPoint = pointNum;
-                    minVoter = userName;
+				if (pointNum > 0){
+					if (pointNum > minPoint) {
+						if (pointNum > maxPoint) {
+							if (minPoint == 0){
+								minPoint = maxPoint;
+								minVoter = maxVoter;  
+							}
+							maxPoint = data.val().point;
+							maxVoter = userName;
+						} else if (pointNum == maxPoint) {
+							maxVoter += ", " + userName;
+						} else if (minPoint == 0) {
+							minPoint = pointNum;
+							minVoter = userName;
+						}
+					} else if (pointNum == minPoint) {
+						minVoter += ", " + userName;
+					} else {
+						minPoint = pointNum;
+						minVoter = userName;
+					}
+				} else {
+                    missCount++;
+					
+                    if (missCount > 1){
+                        missVoter += ', ';
+                    }    
+                    missVoter += userName;
                 }
 
                 switch (pointNum) {
@@ -168,8 +181,12 @@ function showUserVotes(usersRef) {
                 modeIndex++;
             }
         }
-
-        displayVoteTable(modeArray, minPoint, maxPoint, minVoter, maxVoter,counter);
+		
+		if (missCount == 0){
+			missVoter = "";
+		}
+		
+        displayVoteTable(modeArray, minPoint, maxPoint, minVoter, maxVoter,counter - missCount, missVoter);
 
         // update page with user votes
         var canvas = document.getElementById("myChart");
@@ -220,15 +237,28 @@ function showUserVotes(usersRef) {
 
     });
 };
-
+function resetPoint(){
+    var updates = {};
+    var usersRef = myDatabase.ref("rooms/" + roomID +'/users');
+    
+    usersRef.once('value', function(snapshot) {
+        snapshot.forEach(function(data) {
+            if ( data.key != 'name') {
+              updates['rooms/' + roomID +'/users/'+ data.key] = {name: data.val().name,
+																 point: -1};
+              firebase.database().ref().update(updates);
+            }
+        })
+    });
+};
 $(document).on("click", "#endsession", function(data) {
     var roomRef = myDatabase.ref("rooms/" + roomID);
 
     roomRef.remove();  
 });
-
 $(document).on("click", "#revote", function(data) {
-    setTimeout(function() { 
+    resetPoint();
+	setTimeout(function() { 
         var countDownTime = 5;
         var countDown = window.setInterval(function() {
             if (countDownTime === 0) {
