@@ -236,6 +236,7 @@ function showUserVotes(usersRef) {
         });
 
     });
+    resetPoint();
 };
 function resetPoint(){
     var updates = {};
@@ -257,7 +258,6 @@ $(document).on("click", "#endsession", function(data) {
     roomRef.remove();  
 });
 $(document).on("click", "#revote", function(data) {
-    resetPoint();
 	setTimeout(function() { 
         var countDownTime = 5;
         var countDown = window.setInterval(function() {
