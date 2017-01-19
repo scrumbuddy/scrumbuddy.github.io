@@ -58,7 +58,7 @@ function getRoomsInfo(roomsRef) {
             var hostName = data.val().host;
             var createdTime = data.val().createdtime;
             
-            if (hostName != "DefaultRoom") {
+            if (hostName && createdTime && hostName != "DefaultRoom") {
     
                 roomCount++;
                 
