@@ -74,7 +74,7 @@ function getPointFromIndex(index) {
         case 6:
             return 13;
         case 7:
-            return 20;
+            return 21;
     }
 };
 
@@ -161,7 +161,7 @@ function showUserVotes(usersRef) {
                     case 13:
                         countArray[6] += 1;
                         break;
-                    case 20:
+                    case 21:
                         countArray[7] += 1;
                         break;
                 }
@@ -196,7 +196,7 @@ function showUserVotes(usersRef) {
         myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["1/2", "1", "2", "3", "5", "8", "13", "20"],
+                labels: ["1/2", "1", "2", "3", "5", "8", "13", "21"],
                 datasets: [{
                     label: '# of Votes',
                     data: countArray,
