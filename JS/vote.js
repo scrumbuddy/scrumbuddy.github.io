@@ -43,7 +43,7 @@ $(document).ready(function() {
    newUser.set(newUserData);
    
    // define vote button click behavior
-   while (i < 13)
+   while (i < 9)
    {
       $("#btn".concat(i)).click(function() {
          thisID = "#".concat(this.id);
