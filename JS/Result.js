@@ -97,7 +97,7 @@ function showUserVotes(usersRef) {
         var maxVoter = "";
 		var missVoter = "Missed vote: ";
 		var missCount = 0;
-        var countArray = [0, 0, 0, 0, 0, 0, 0, 0];
+        var countArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var modeArray = [];
         var mode = 0;
 
