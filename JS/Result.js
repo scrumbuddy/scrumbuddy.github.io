@@ -75,6 +75,14 @@ function getPointFromIndex(index) {
             return 13;
         case 7:
             return 21;
+        case 8:
+            return 34;
+        case 9:
+            return 55;
+        case 10:
+            return 89;
+        case 11:
+            return 1000;
     }
 };
 
@@ -164,6 +172,18 @@ function showUserVotes(usersRef) {
                     case 21:
                         countArray[7] += 1;
                         break;
+                    case 34:
+                        countArray[8] += 1;
+                        break;
+                    case 55:
+                        countArray[9] += 1;
+                        break;
+                    case 89:
+                        countArray[10] += 1;
+                        break;
+                    case 1000:
+                        countArray[11] += 1;
+                        break;
                 }
             }
         });
@@ -196,7 +216,7 @@ function showUserVotes(usersRef) {
         myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["1/2", "1", "2", "3", "5", "8", "13", "21"],
+                labels: ["1/2", "1", "2", "3", "5", "8", "13", "21", "34", "55", "89", "1000"],
                 datasets: [{
                     label: '# of Votes',
                     data: countArray,
